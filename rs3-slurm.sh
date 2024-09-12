@@ -13,5 +13,22 @@
 #SBATCH -e rs3-slurm.%N.%j.err # STDERR
 
 # LOAD MODULES, INSERT CODE, AND RUN YOUR PROGRAMS HERE
+<<<<<<< HEAD
 python -u -c "import PyHipp as pyh; import DataProcessingTools as DPT; import time; import os; t0 = time.time(); print(time.localtime()); DPT.objects.processDirs(dirs=None, objtype=pyh.RPLSplit, channel=[*range(65,97)]); DPT.objects.processDirs(dirs=['sessioneye/array03','session01/array03'], cmd='import PyHipp as pyh; import DataProcessingTools as DPT; DPT.objects.processDirs(None, pyh.RPLLFP, saveLevel=1); DPT.objects.processDirs(None, pyh.RPLHighPass, saveLevel=1);'); os.chdir('session01/array03'); DPT.objects.processDirs(level='channel', cmd='import PyHipp as pyh; from PyHipp import mountain_batch; mountain_batch.mountain_batch(); from PyHipp import export_mountain_cells; export_mountain_cells.export_mountain_cells();'); print(time.localtime()); print(time.time()-t0);"
 aws sns publish --topic-arn arn:aws:sns:ap-southeast-1:043309345711:awsnotify --message "RPLS3JobDone"
+=======
+python -u -c "import PyHipp as pyh; \
+import DataProcessingTools as DPT; \
+import os; \
+import time; \
+t0 = time.time(); \
+print(time.localtime()); \
+DPT.objects.processDirs(dirs=None, objtype=pyh.RPLSplit, channel=[*range(65,97)]); \
+DPT.objects.processDirs(dirs=['sessioneye/array03','session01/array03'], cmd='import PyHipp as pyh; import DataProcessingTools as DPT; DPT.objects.processDirs(None, pyh.RPLLFP, saveLevel=1); DPT.objects.processDirs(None, pyh.RPLHighPass, saveLevel=1);'); \
+os.chdir('session01/array03'); \
+DPT.objects.processDirs(level='channel', cmd='import PyHipp as pyh; from PyHipp import mountain_batch; mountain_batch.mountain_batch(); from PyHipp import export_mountain_cells; export_mountain_cells.export_mountain_cells();'); \
+print(time.localtime()); \
+print(time.time()-t0);"
+
+aws sns publish --topic-arn arn:aws:sns:ap-southeast-1:018084650241:awsnotify --message "RPLS3JobDone"
+>>>>>>> upstream/main
